@@ -12,7 +12,6 @@ class Schema:
             self.create_user_table()
             self.create_transfers_table()
 
-
         except Error as e:
             print("Error connection to db",e)
 
@@ -55,20 +54,24 @@ class ManageUser:
     def getuserlist(self):
         query = "SELECT * FROM user;"
         result = self.cursor.execute(query)
-        return result
+        results = self.cursor.fetchall()
+        return results
 
     def getuserdetails(self,id):
-        query = "SELECT * FROM user WHERE user_id="+id+";"
+        query = "SELECT * FROM user WHERE user_id=\"+id+\";"
         result = self.cursor.execute(query)
-        return result
+        results = self.cursor.fetchall()
+        return results
 
     def updatecreds(self,id1,id2,crd):
-        query = "UPDATE user SET credit=credit-"+crd+"where user_id="+id1+";"
+        query = "UPDATE user SET credit=credit-\"+crd+\"where user_id=\"+id1+\";"
         result = self.cursor.execute(query)
+        results = self.cursor.fetchone()
         self.connection.commit()
 
-        query = "UPDATE user SET credit=credit+"+crd+"where user_id="+id2+";"
+        query = "UPDATE user SET credit=credit+\"+crd+\"where user_id=\"+id2+\";"
         result = self.cursor.execute(query)
+        results = self.cursor.fetchone()
         self.connection.commit()
 
 
@@ -85,11 +88,13 @@ class ManageTrs:
             print("Error connection to db",e)
 
     def addtrn(self,id1,id2,crd):
-        query = "INSERT INTO transfers(sender_id,recipient_id,credits) VALUES("+id1+","+id2+","+crd");"
+        query = "INSERT INTO transfers(sender_id,recipient_id,credits) VALUES(\"+id1+\",\"+id2+\",\"+crd\");"
         result = self.cursor.execute(query)
+        results = self.cursor.fetchone()
         self.connection.commit()
 
     def gettrn(self,id):
-        query = "SELECT * FROM transfers WHERE sender_id="+id+";"
+        query = "SELECT * FROM transfers WHERE sender_id=\"+id+\";"
         result = self.cursor.execute(query)
-        self.connection.commit()
+        results = self.cursor.fetchall()
+        return results
