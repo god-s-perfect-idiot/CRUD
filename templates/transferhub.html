@@ -54,7 +54,7 @@
     <div class="cont container content-wrap text-center">
       <h2>Users</h2>
       <br><br><br>
-      <table id="table1" class="table table-striped scrollable">
+      <table id="table1" class="table table-striped">
         <thead class="multi">
           <tr>
             <th class="multi">Name</th>
@@ -66,7 +66,7 @@
         <tbody class="multi">
           {%for i in range(1,userlist[0]+1)%}
           <tr>
-            <td class="multi"><a class="anchor-color" href={{url_for('viewuser', uid=userlist[i][0])}}>{{userlist[i][1]}}</a></td>
+            <td class="multi"><a class="anchor-color" href={{ url_for('viewuser', uid=userlist[i][0]) }}>{{userlist[i][1]}}</td>
             <td class="multi">{{userlist[i][2]}}</td>
             <td class="multi">{{userlist[i][3]}}</td>
             <td class="multi">{{userlist[i][4]}}</td>

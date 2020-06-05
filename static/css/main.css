@@ -1,7 +1,8 @@
-table {
+table{
     width: 716px; /* 140px * 5 column + 16px scrollbar width */
     border-spacing: 0;
 }
+
 
 tbody, thead tr { display: block; }
 
@@ -11,10 +12,43 @@ tbody {
     overflow-x: hidden;
 }
 
-tbody td, thead th {
+tbody td.multi, thead th.multi {
     width: 32%;
 }
 
-thead th:last-child {
+thead th.mutli:last-child {
     width: 32%; /* 140px + 16px scrollbar width */
+}
+
+tbody td.single, thead th.single {
+    width: 100%;
+}
+
+thead th.single:last-child {
+    width: 100%; /* 140px + 16px scrollbar width */
+}
+
+
+a.anchor-color:active {
+  color:white;
+}
+a.anchor-color:hover {
+  color:#DEDEDE;
+}
+a.anchor-color:visited {
+  color:white;
+}
+a.anchor-color:link {
+  color:white;
+}
+.user-name{
+  text-align: left;
+}
+.user-info{
+  text-align: right;
+}
+table.single{
+  width:auto;
+  margin-right: 0px;
+  margin-left:auto;
 }

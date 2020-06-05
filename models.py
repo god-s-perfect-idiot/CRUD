@@ -32,6 +32,8 @@ class Schema:
                 trn_id INT AUTO_INCREMENT PRIMARY KEY,
                 sender_id INT NOT NULL,
                 recipient_id INT NOT NULL,
+                sender VARCHAR(255) NOT NULL,
+                recipent VARCHAR(255) NOT NULL,
                 credits INT NOT NULL
                 )ENGINE = INNODB"""
 
@@ -58,18 +60,18 @@ class ManageUser:
         return results
 
     def getuserdetails(self,id):
-        query = "SELECT * FROM user WHERE user_id=\"+id+\";"
+        query = "SELECT * FROM user WHERE user_id="+str(id)+";"
         result = self.cursor.execute(query)
         results = self.cursor.fetchall()
         return results
 
     def updatecreds(self,id1,id2,crd):
-        query = "UPDATE user SET credit=credit-\"+crd+\"where user_id=\"+id1+\";"
+        query = "UPDATE user SET credit=credit-"+str(crd)+"where user_id="+str(id1)+";"
         result = self.cursor.execute(query)
         results = self.cursor.fetchone()
         self.connection.commit()
 
-        query = "UPDATE user SET credit=credit+\"+crd+\"where user_id=\"+id2+\";"
+        query = "UPDATE user SET credit=credit+"+str(crd)+"where user_id="+str(id2)+";"
         result = self.cursor.execute(query)
         results = self.cursor.fetchone()
         self.connection.commit()
@@ -87,14 +89,14 @@ class ManageTrs:
         except Error as e:
             print("Error connection to db",e)
 
-    def addtrn(self,id1,id2,crd):
-        query = "INSERT INTO transfers(sender_id,recipient_id,credits) VALUES(\"+id1+\",\"+id2+\",\"+crd\");"
+    def addtrn(self,id1,id2,name1,name2,crd):
+        query = "INSERT INTO transfers(sender_id,recipient_id,name1,name2,credits) VALUES("+str(id1)+","+str(id2)+","+name1+","+name2+","+str(crd)+");"
         result = self.cursor.execute(query)
         results = self.cursor.fetchone()
         self.connection.commit()
 
     def gettrn(self,id):
-        query = "SELECT * FROM transfers WHERE sender_id=\"+id+\";"
+        query = "SELECT * FROM transfers WHERE sender_id="+str(id)+" OR recipient_id="+str(id)+";"
         result = self.cursor.execute(query)
         results = self.cursor.fetchall()
         return results
