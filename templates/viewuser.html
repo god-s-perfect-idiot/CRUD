@@ -51,33 +51,31 @@
   </nav>
   <!-- Header Starts -->
   <section id="Banner" class="content-section">
-    <div class="cont container content-wrap text-center">
-      <div class="col-sm-12">
-        <div class="col-sm-6">
+    <div class="container text-center">
+      <div class=row>
+        <div class="col-sm-12 col-md-6">
           <h3 class="user-name"><br><br>{{ user[0][1] }}<h3>
+            <h6 class="user-info">
+              Age: {{user[0][2]}}
+              <br><br>Email-ID: {{user[0][3]}}
+            </h6>
+            <h5 class="user-info"><br><br><br><br><br><br><br>Credit Balance: {{user[0][4]}}<h5>
+            <div>
+              <br><br><br><a class="btn btn-primary btn-xl" href={{ url_for('hub', uid=user[0][0])}}>Transfer Credits</a>
+            </div>
         </div>
-        <div class="col-sm-6">
-          <h6 class="user-info">
-            Age: {{user[0][2]}}
-            <br><br>Email-ID: {{user[0][3]}}
-          </h6>
-          <h5 class="user-info"><br><br><br><br><br><br><br>Credit Balance: {{user[0][4]}}<h5>
-          <div>
-            <br><br><br><a class="btn btn-primary btn-xl" href={{ url_for('hub', uid=user[0][0])}}>Transfer Credits</a>
-          </div>
-        </div>
-        <div class="cont container content-wrap text-center">
+        <div class="col-sm-12 col-md-6">
           <div class="user-info">
-            <table id="table1" class="table table-striped single">
-              <thead class="single">
+            <br><br><br><table id="table1" class="table table-striped single">
+              <thead class="single trs">
                 <tr>
-                  <th class="single">Transaction History</th>
+                  <th class="single text-center trs">Transaction History</th>
                 </tr>
               </thead>
               <tbody class="single">
                 {%for i in range(1,transactions[0]+1)%}
                 <tr>
-                  <td class="single">{{transactions}}</td>
+                  <td class="single text-center">{{transactions[i]}}</td>
                 </tr>
                 {%endfor%}
               </tbody>
@@ -86,7 +84,6 @@
         </div>
       </div>
     </div>
-
     <div class="overlay"></div>
   </section>
   <!-- Header Ends -->

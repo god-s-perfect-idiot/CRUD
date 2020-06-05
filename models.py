@@ -66,12 +66,13 @@ class ManageUser:
         return results
 
     def updatecreds(self,id1,id2,crd):
-        query = "UPDATE user SET credit=credit-"+str(crd)+"where user_id="+str(id1)+";"
+        query = "UPDATE user SET credit=credit-"+str(crd)+" WHERE user_id="+str(id1)+";"
+        print(query)
         result = self.cursor.execute(query)
         results = self.cursor.fetchone()
         self.connection.commit()
 
-        query = "UPDATE user SET credit=credit+"+str(crd)+"where user_id="+str(id2)+";"
+        query = "UPDATE user SET credit=credit+"+str(crd)+" WHERE user_id="+str(id2)+";"
         result = self.cursor.execute(query)
         results = self.cursor.fetchone()
         self.connection.commit()
@@ -90,7 +91,7 @@ class ManageTrs:
             print("Error connection to db",e)
 
     def addtrn(self,id1,id2,name1,name2,crd):
-        query = "INSERT INTO transfers(sender_id,recipient_id,name1,name2,credits) VALUES("+str(id1)+","+str(id2)+","+name1+","+name2+","+str(crd)+");"
+        query = "INSERT INTO transfers(sender_id,recipient_id,sender,recipent,credits) VALUES("+str(id1)+","+str(id2)+",'"+name1+"','"+name2+"',"+str(crd)+");"
         result = self.cursor.execute(query)
         results = self.cursor.fetchone()
         self.connection.commit()
