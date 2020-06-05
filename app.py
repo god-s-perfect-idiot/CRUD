@@ -19,18 +19,11 @@ def viewuser(uid):
     viewbag_trans = service.pulltransactions(uid)
     return render_template('viewuser.html', user = viewbag_user, transactions = viewbag_trans)
 
-@app.route("/transferhub/<int:uid1>",methods=['GET'])
-def transferhub(uid1):
-    users = service.pullusers()
-    sender = service.pulluser(uid1)
-    return render_template('transferhub', user=sender, ulist=users)
-
-@app.route("/send/<int:uid1><int:uid2><int:creds>",methods=['GET'])
-def send(uid1,uid2,creds):
-    service.pushtransaction(uid1,uid2,creds)
+@app.route("/hub/<int:uid>",methods=['GET'])
+def hub(uid):
     users = service.pullusers()
     sender = service.pulluser(uid)
-    return render_template('send', user=sender, ulist=users)
+    return render_template('hub.html', user=sender, ulist=users)
 
 if(__name__=="__main__"):
     models.Schema()

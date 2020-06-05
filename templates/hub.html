@@ -17,6 +17,7 @@
   <script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
   <script type="text/javascript" src="{{url_for('static', filename='js/all-plugins.js')}}"></script>
   <script type="text/javascript" src="{{url_for('static', filename='js/plugins-activate.js')}}"></script>
+  <script type="text/javascript" src="{{url_for('static', filename='js/site.js')}}"></script>
 </head>
 
 <body id="page-top">
@@ -51,42 +52,29 @@
   </nav>
   <!-- Header Starts -->
   <section id="Banner" class="content-section">
-    <div class="cont container content-wrap text-center">
-      <div class="col-sm-12">
-        <div class="col-sm-6">
-          <h3 class="user-name"><br><br>{{ user[0][1] }}<h3>
-        </div>
-        <div class="col-sm-6">
-          <h6 class="user-info">
-            Age: {{user[0][2]}}
-            <br><br>Email-ID: {{user[0][3]}}
-          </h6>
-          <h5 class="user-info"><br><br><br><br><br><br><br>Credit Balance: {{user[0][4]}}<h5>
-          <div>
-            <br><br><br><a class="btn btn-primary btn-xl" href={{ url_for('hub', uid=user[0][0])}}>Transfer Credits</a>
-          </div>
-        </div>
-        <div class="cont container content-wrap text-center">
-          <div class="user-info">
-            <table id="table1" class="table table-striped single">
-              <thead class="single">
-                <tr>
-                  <th class="single">Transaction History</th>
-                </tr>
-              </thead>
-              <tbody class="single">
-                {%for i in range(1,transactions[0]+1)%}
-                <tr>
-                  <td class="single">{{transactions}}</td>
-                </tr>
+    <div class="col-sm-12">
+      <div class="col-sm-6">
+        <h3 class="text-center"><br><br>{{ user[0][1] }}<h3>
+        <h5 class="text-center"><br><br>Credit Balance: {{user[0][4]}}<h5>
+      </div>
+
+      <div class="cont container content-wrap text-center">
+        <div class="user-info">
+          <form id="getinfo">
+            <label for="user"><h6>Select a Recipient:</h6></label><br/>
+            <select name="user" id="user">
+              <div class="custom-select">
+                {%for i in range(1,ulist[0]+1)%}
+                <option value={{ulist[i][0]}}>{{ulist[i][1]}}</option>
                 {%endfor%}
-              </tbody>
-            </table>
-          </div>
+              </div>
+            </select>
+            <br><br>
+            <input type="submit" value="Submit">
+          </form>
         </div>
       </div>
     </div>
-
     <div class="overlay"></div>
   </section>
   <!-- Header Ends -->
