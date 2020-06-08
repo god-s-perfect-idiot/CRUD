@@ -12,4 +12,5 @@ Used tools:
 - css/js
 
 
-Runs at localhost:5000/. Will be up at my heroku or gcp once finished. 
+Runs at localhost:5000/.
+Up at https://godsperfectidiot.pythonanywhere.com/
