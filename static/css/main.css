@@ -231,6 +231,11 @@ input.transparent {
   color:red;
   text-align:center;
 }
+.small-pop{
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
 ::-webkit-input-placeholder { color: #666;}
 :-moz-placeholder { color: #666; }
 ::-moz-placeholder { color: #666; }

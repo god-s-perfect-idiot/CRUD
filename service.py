@@ -47,7 +47,15 @@ def pushtransaction(uid1,uid2,credits):
     manageu = models.ManageUser()
     user1 = manageu.getuserdetails(uid1)
     user2 = manageu.getuserdetails(uid2)
+    message = ""
     if(credits.isdigit()):
         if(int(credits)<=int(user1[0][4])):
             managet.addtrn(uid1,uid2,user1[0][1],user2[0][1],credits)
             manageu.updatecreds(uid1,uid2,credits)
+            message = "Transaction completed successfully!"
+        else:
+            message = "Transaction Failed! Insufficient credits."
+
+    else:
+        message = "Transaction Failed! Unintelligible request."
+    return message

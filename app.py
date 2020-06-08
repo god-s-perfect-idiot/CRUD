@@ -21,10 +21,10 @@ def users():
 def viewuser(uid):
     global current_user
     current_user = uid
-
     viewbag_user = service.pulluser(uid)
     viewbag_trans = service.pulltransactions(uid)
-    return render_template('viewuser.html', user = viewbag_user, transactions = viewbag_trans)
+    message=""
+    return render_template('viewuser.html', user = viewbag_user, transactions = viewbag_trans, message=message)
 
 @app.route("/hub/<int:uid>",methods=['GET','POST'])
 def hub(uid):
@@ -34,8 +34,10 @@ def hub(uid):
             creds = request.form['amount']
             uid2 = request.form['recipient']
             user = current_user
-            service.pushtransaction(user,uid2,creds)
-            return render_template('home.html')
+            message = service.pushtransaction(user,uid2,creds)
+            viewbag_user = service.pulluser(uid)
+            viewbag_trans = service.pulltransactions(uid)
+            return render_template('viewuser.html', user = viewbag_user, transactions = viewbag_trans, message = message)
         else:
             users = service.pullsenders(uid)
             sender = service.pulluser(uid)
